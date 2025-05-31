@@ -1,45 +1,78 @@
 # EX 1 Display operator precedence in the infix expression.
-
 ## AIM:
 To write a C program to find and display the priority of the operator in the given Postfix expression
 
 ## Algorithm
-1.Start the program.
-2.Define the priority() function to return the priority of operators.
-3.Initialize the string containing operators and operands.
-4.Loop through each character in the string.
-5.For each operator, call the priority() function to determine its priority.
-6.Print the operator and its corresponding priority level.
-7.End
+1. Start the program.
+2. Define the priority() function to return the priority of operators.
+3. Initialize the string containing operators and operands.
+4. Loop through each character in the string.
+5. For each operator, call the priority() function to determine its priority.
+6. Print the operator and its corresponding priority level.
+7. End.
+
 ## Program:
 ```
 /*
 Program to find and display the priority of the operator in the given Postfix expression
 Developed by: SUBHASHINI.B
-RegisterNumber:  212223040211
+RegisterNumber: 212223040211
 */
-#include<stdio.h>
-void TOH(int n,char x,char y,char z)
+#include <stdio.h>  
+#include<string.h>
+int priority(char x)
 {
-     if (n > 0) {
-        TOH(n - 1, x, z, y);
-        printf("%c to %c\n", x, y);
-        TOH(n - 1, z, y, x);
-    }
+
+if(x == '&' || x == '|') return 1;
+if(x == '+' || x == '-') return 2;
+if(x == '*' || x == '/' || x == '%') return 3;
+if(x == '^') return 4;
+return 0;
 }
 int main()
 {
-   int n = 4; 
-    TOH(n, 'A', 'B', 'C');
-    return 0;
+int i,j;
+ 
+char ch[100]="(A*B)^C+(D%H)/F&G";
+
+for(i=0;i<strlen(ch);i++)
+{
+if(ch[i]=='+'||
+ch[i]=='-'||
+ch[i]=='*'||
+ch[i]=='/'||
+ch[i]=='%'||
+ch[i]=='^'||
+ch[i]=='&'||
+ch[i]=='|')
+{
+j=priority(ch[i]); switch(j)
+{
+case 1:
+printf("%c	> ",ch[i]);
+printf("Lowest Priority\n"); break;
+case 2:
+printf("%c	> ",ch[i]);
+printf("Second Lowest Priority\n"); break;
+case 3:
+printf("%c	> ",ch[i]);
+printf("Second Highest Priority\n"); break;
+case 4:
+printf("%c	> ",ch[i]);
+printf("Highest Priority\n"); break;
+}
+}
+}
+
+return 0;
 }
 
 ```
 
 ## Output:
+![Screenshot 2025-04-29 085311](https://github.com/user-attachments/assets/6bbb822f-c7b5-4129-bd66-60e8c490dbfa)
 
-![Alt text](DS_Module13/image.png)
 
 
 ## Result:
-Thus the C program to find and display the priority of the operator in the given Postfix expression is implemented successfull
+Thus the C program to find and display the priority of the operator in the given Postfix expression is implemented successfully
